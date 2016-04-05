@@ -1,0 +1,140 @@
+#!/usr/bin/env cwl-runner
+
+description: |
+    Usage: cwl-runner <path_to_cwl_file> options
+    Options:
+        --bam			    path to BAM file
+        --genome_annotation	path to annotation file
+        --outdir		    path to output directory
+        --id			    unique identifier
+        --strand		    strand specificity (yes, no, reverse)
+        --case_id           unique indentifier for case
+        --gdc_id            unique identifier for file
+        --record_metrics    Whether to record metrics (0/1)
+        --username          username for database
+        --password          password for database
+
+requirements:
+    - class: DockerRequirement
+      dockerPull: quay.io/ncigdc/htseq-tool:v2.9
+
+class: CommandLineTool
+
+inputs:
+    - id: "#bam"
+      type: File
+      inputBinding:
+        prefix: --bam
+
+    - id: "#genome_annotation"
+      type: File
+      inputBinding:
+        prefix: --genome_annotation
+
+    - id: "#case_id"
+      type: string
+      inputBinding:
+          prefix: --case_id
+              
+    - id: "#gdc_id"
+      type: string
+      inputBinding:
+        prefix: --gdc_id
+    
+    - id: "#outdir"
+      type: string
+      inputBinding:
+        prefix: --outdir
+
+    - id: "#id"
+      type: string
+      default: "unknown"
+      inputBinding:
+        prefix: --id
+
+    - id: "#strand"
+      type: string
+      default: "no"
+      inputBinding:
+        prefix: --strand
+
+    - id: "#record_metrics"
+      type: int
+      default: 0
+      inputBinding:
+        prefix: --record_metrics
+
+
+    - id: "#username"
+      type: string
+      default: "unknown"
+      inputBinding:
+        prefix: --username
+
+
+    - id: "#password"
+      type: string
+      default: "unknown"
+      inputBinding:
+        prefix: --password
+
+    - id: "#host"
+      type: string
+      inputBinding:
+        prefix: --host
+
+    - id: "#gene_lengths"
+      type: File
+      default: "gencode.v22.gene.length.txt"
+      inputBinding:
+        prefix: --gene_lengths
+
+outputs:
+    - id: "#rawcount"
+      type: File
+      description: "raw counts file"
+      outputBinding: 
+        glob:
+            engine: node-engine.cwl
+            script: |
+                {
+                    return $job['id'] + ".htseq.counts"
+                }
+
+    - id: "#fpkm"
+      type: File
+      description: "fpkm counts file"
+      outputBinding: 
+        glob:
+            engine: node-engine.cwl
+            script: |
+                {
+                    return $job['id'] + ".FPKM.txt"
+                }
+
+    
+    - id: "#fpkm_uq"
+      type: File
+      description: "fpkm upper quantile counts file"
+      outputBinding: 
+        glob:
+            engine: node-engine.cwl
+            script: |
+                {
+                    return $job['id'] + ".FPKM-UQ.txt"
+                }
+
+    - id: "#log"
+      type: File
+      description: "log file from the run"
+      outputBinding: 
+        glob:
+            engine: node-engine.cwl
+            script: |
+                {
+                    return $job['id'] + ".htseq.log"
+                }
+
+baseCommand: ["/home/ubuntu/.virtualenvs/p2/bin/python", "/home/ubuntu/bin/htseq-tool/htseq_main.py"]
+
+

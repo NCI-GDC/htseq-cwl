@@ -32,5 +32,5 @@ cwl=$wkdir/varscan-cwl/tools/htseq-tool.cwl.yaml
 
 trap cleanup EXIT
 
-/home/ubuntu/.virtualenvs/p2/bin/python $wkdir/htseq-cwl/slurm/run_cwl.py --genome_annotation $annotation --bam $bam --gdc_id $gdc_id --case_id $case_id --username $username --password $password --basedir $wkdir --cwl $cwl --s3dir $s3dir --s3ceph $s3cfg --host $host --cleversafe_endpoint $clsafe_endpoint
+/home/ubuntu/.virtualenvs/p2/bin/python $wkdir/htseq-cwl/slurm/run_cwl.py --genome_annotation $annotation --bam $bam --gdc_id $gdc_id --case_id $case_id --username $username --password $password --basedir $wkdir --cwl $cwl --s3dir $s3dir --host $host --cleversafe_endpoint $clsafe_endpoint
 
