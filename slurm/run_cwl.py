@@ -90,7 +90,7 @@ if __name__ == "__main__":
     required.add_argument("--username", default=None, help="Username for postgres", required=True)
     required.add_argument("--password", default=None, help="Password for postgres", required=True)
     required.add_argument("--cwl", default=None, help="Path to CWL code", required=True)
-    required.add_argument("--gene_lengths", default=None, help="path to gene lengths", required=True)
+    required.add_argument("--gene_lengths", default="/home/ubuntu/bin/htseq-tool/gencode.v22.gene.length.txt", help="path to gene lengths")
 
     optional = parser.add_argument_group("Optional input parameters")
     optional.add_argument("--strand", default="no", help="Strandedness for HTseq")
