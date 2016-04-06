@@ -142,8 +142,15 @@ if __name__ == "__main__":
 
 
     #download genome annotation
-    logger.info("downloading genome annotation")
-    genome_annotation = get_input_file(args.genome_annotation, inp, logger, endpoint_url=args.cleversafe_endpoint, profile='cleversafe')
+    if not os.path.isfile(args.genome_annotation):
+        logger.info("downloading genome annotation")
+        genome_annotation = get_input_file(args.genome_annotation, inp, logger, endpoint_url=args.cleversafe_endpoint, profile='cleversafe')
+
+    #download gene-lengths file
+    gene_lengths = args.gene_lengths
+    if not os.path.isfile(args.gene_lengths):
+        logger.info("downloading gene lengths file")
+        gene_lengths = get_input_file(args.gene_lengths, inp, logger, endpoint_url=args.cleversafe_endpoint, profile='cleversafe')
 
     #download rnaseq bam
     logger.info("getting aligned bam: %s" %args.bam)
@@ -166,7 +173,7 @@ if __name__ == "__main__":
             "--host", args.host,
             "--strand", args.strand,
             "--outdir", ".",
-            "--gene_lengths", args.gene_lengths,
+            "--gene_lengths", gene_lengths,
             "--record_metrics", args.record_metrics
             ]
 

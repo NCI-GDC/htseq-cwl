@@ -28,7 +28,7 @@ export PATH=$PATH:/home/ubuntu/.virtualenvs/p2/bin/
 
 sudo git clone -b feat/slurm $repository  
 sudo chown ubuntu:ubuntu htseq-cwl 
-cwl=$wkdir/varscan-cwl/tools/htseq-tool.cwl.yaml
+cwl=$wkdir/htseq-cwl/tools/htseq-tool.cwl.yaml
 
 trap cleanup EXIT
 
