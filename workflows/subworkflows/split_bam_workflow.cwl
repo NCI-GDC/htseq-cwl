@@ -17,11 +17,22 @@ outputs:
     outputSource: run_inputs_decider/bam_files 
 
 steps:
+  run_namesort_bam:
+    run: ../../tools/samtools_namesort_bam.cwl
+    in:
+      threads: threads
+      output_filename:
+        source: job_uuid
+        valueFrom: $(self + '.namesort.bam') 
+      tmp_prefix: job_uuid
+      bam_file: bam_file
+    out: [ output ]
+
   run_get_pe:
     run: ../../tools/samtools_filter_bam.cwl
     in:
       threads: threads
-      bam_file: bam_file
+      bam_file: run_namesort_bam/output
       output_filename:
         source: job_uuid
         valueFrom: $(self + '.paired.bam') 
@@ -41,7 +52,7 @@ steps:
     run: ../../tools/samtools_filter_bam.cwl
     in:
       threads: threads
-      bam_file: bam_file
+      bam_file: run_namesort_bam/output 
       output_filename:
         source: job_uuid
         valueFrom: $(self + '.unpaired.bam') 
