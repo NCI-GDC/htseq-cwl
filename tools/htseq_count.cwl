@@ -4,7 +4,7 @@ class: CommandLineTool
 
 requirements:
   - class: DockerRequirement
-    dockerPull: quay.io/ncigdc/htseq-tool:06543cac3faab19ee4f69ee0dece5c270e3f8840 
+    dockerPull: quay.io/ncigdc/htseq-tool:a7e2b399ff241bd874d0cfc793199eadb79519b4
   - class: InlineJavascriptRequirement
 
 inputs:
