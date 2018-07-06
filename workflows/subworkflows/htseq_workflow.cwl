@@ -32,6 +32,8 @@ steps:
     scatterMethod: "dotproduct"
     in:
       bam_file: bam_file
+      sort_order:
+        default: "name" 
       output_filename:
         source: bam_file 
         valueFrom: $(self.nameroot + '.htseq_counts.txt')
