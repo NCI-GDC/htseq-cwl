@@ -4,8 +4,6 @@ class: Workflow
 requirements:
   - class: InlineJavascriptRequirement
   - class: StepInputExpressionRequirement
-  - class: SubworkflowFeatureRequirement
-  - class: MultipleInputFeatureRequirement
   - class: ScatterFeatureRequirement
 
 inputs:

@@ -6,6 +6,13 @@ requirements:
   - class: DockerRequirement
     dockerPull: quay.io/ncigdc/htseq-tool:a7e2b399ff241bd874d0cfc793199eadb79519b4
   - class: InlineJavascriptRequirement
+    expressionLib:
+      $import: ./util_lib.cwl
+  - class: ResourceRequirement
+    coresMin: 1
+    ramMin: 1000
+    tmpdirMin: $(sum_file_array_size([inputs.bam_file, inputs.gtf_file]) * 1.1)
+    outdirMin: $(sum_file_array_size([inputs.bam_file, inputs.gtf_file]) * 1.1)
 
 inputs:
   file_format:

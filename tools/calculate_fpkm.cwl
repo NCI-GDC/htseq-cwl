@@ -6,6 +6,13 @@ requirements:
   - class: DockerRequirement
     dockerPull: quay.io/ncigdc/htseq-tool:a7e2b399ff241bd874d0cfc793199eadb79519b4
   - class: InlineJavascriptRequirement
+    expressionLib:
+      $import: ./util_lib.cwl
+  - class: ResourceRequirement
+    coresMin: 1
+    ramMin: 500
+    tmpdirMin: $(sum_file_array_size([inputs.htseq_file, inputs.aggregate_length_file]) * 2)
+    outdirMin: $(sum_file_array_size([inputs.htseq_file, inputs.aggregate_length_file]) * 2)
 
 inputs:
   htseq_file:

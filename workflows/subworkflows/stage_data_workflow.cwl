@@ -4,7 +4,6 @@ class: Workflow
 
 requirements:
   - class: InlineJavascriptRequirement
-  - class: StepInputExpressionRequirement
 
 inputs:
   bioclient_config: File
