@@ -67,28 +67,7 @@ steps:
     out: [ counts ]
 
   run_inputs_decider:
-    run:
-      class: ExpressionTool
-      inputs:
-        pe_bam_file: File
-        pe_counts: int
-        se_bam_file: File
-        se_counts: int
-      outputs: 
-        bam_files:
-          type: File[]
-      expression: |
-        ${
-           var curr = [];
-           if(inputs.pe_counts > 0) {
-             curr.push(inputs.pe_bam_file)
-           }
-
-           if(inputs.se_counts > 0) {
-             curr.push(inputs.se_bam_file)
-           }
-           return {"bam_files": curr}
-         }
+    run: ../../tools/bam_inputs_decider.cwl
     in:
       pe_bam_file: run_get_pe/output
       pe_counts: run_pe_check/counts
