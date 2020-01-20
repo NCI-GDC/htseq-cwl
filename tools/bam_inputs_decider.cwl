@@ -1,11 +1,8 @@
-#!/usr/bin/env cwl-runner
-
 cwlVersion: v1.0
-
+class: ExpressionTool
+id: bam_inputs_decider
 requirements:
   - class: InlineJavascriptRequirement
-
-class: ExpressionTool
 
 inputs:
   pe_bam_file: File

@@ -1,7 +1,6 @@
-#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
-
+id: calculate_fpkm
 requirements:
   - class: DockerRequirement
     dockerPull: quay.io/ncigdc/htseq-tool:2a8b0bfec9dc52aaeac29ee8e7ff3284e79553c0
