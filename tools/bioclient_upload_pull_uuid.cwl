@@ -60,7 +60,7 @@ outputs:
     outputBinding:
       glob: "*_upload.json"
   
-  uuid 
+  uuid:
     type: string 
     outputBinding:
       glob: "*_upload.json"      
