@@ -1,4 +1,4 @@
-ENTRY_CWL := "workflow.cwl"
+ENTRY_CWL := "htseq_count_workflow.cwl"
 
 # Pack and apply Jinja templating. Creates cwl.json file
 # Should be runnable in built docker container
