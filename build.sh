@@ -80,6 +80,7 @@ for directory in *; do
 
 		# Assign the final tags now so later images can build on this one.
 		populate_image_tags "${directory}"
+    echo "Using tags ${IMAGE_TAGS}"
 		for TAG in "${IMAGE_TAGS[@]}"; do
 			docker tag "build-${directory}:${CURRENT_VERSION}" "$TAG"
 		done
@@ -102,10 +103,11 @@ if [[ -n "$GITLAB_CI" ]]; then
 				continue
 			fi
 
-			echo "Pushing and cleaning up."
+			echo "Pushing tags for image: ${directory}"
 
 			populate_image_tags "${directory}"
 			for TAG in "${IMAGE_TAGS[@]}"; do
+				echo "Pushing tag  ${TAG}"
 				docker push "${TAG}"
 				docker rmi "${TAG}"
 				echo "${TAG} is all set"
