@@ -1,0 +1,15 @@
+{
+    "template": "git@github.com:NCI-GDC/bio-cwl-template.git",
+    "commit": "33c14f9ed02083f93091e218a8737a932fcf7a53",
+    "context": {
+      "cookiecutter": {
+        "repository_name": "htseq-cwl",
+        "workflow_name": "htseq_cwl",
+        "commit": "33c14f9ed02083f93091e218a8737a932fcf7a53",
+        "_template": "git@github.com:NCI-GDC/bio-cwl-template.git"
+      }
+    },
+    "directory": null,
+    "checkout": null
+  }
+
