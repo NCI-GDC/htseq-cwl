@@ -3,8 +3,7 @@ class: CommandLineTool
 id: bio_client_upload_pull_uuid
 requirements:
   - class: DockerRequirement
-    dockerPull: "{{ docker_repo }}/bio-client:{{ bio_client }}"
-    
+    dockerPull: "{{ docker_repository }}/bio-client:{{ bio_client }}"
   - class: ResourceRequirement
     coresMin: 1
     coresMax: 1
@@ -60,5 +59,16 @@ outputs:
     type: File
     outputBinding:
       glob: "*_upload.json"
+  
+  uuid 
+    type: string 
+    outputBinding:
+      glob: "*_upload.json"      
+      loadContents: true
+      outputEval: |
+        ${
+           var data = JSON.parse(self[0].contents);
+           return(data["did"]);
+         }
 
 baseCommand: [/usr/local/bin/bio_client.py]
